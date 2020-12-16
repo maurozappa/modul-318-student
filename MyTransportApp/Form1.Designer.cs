@@ -51,10 +51,8 @@
       this.TextBox = new System.Windows.Forms.TextBox();
       this.OverlayArbeitstafel = new System.Windows.Forms.TabPage();
       this.dataGridViewArbeitstafel = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.SearchButtonArbeitstafel = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
@@ -63,10 +61,15 @@
       this.label2 = new System.Windows.Forms.Label();
       this.textBox2 = new System.Windows.Forms.TextBox();
       this.OverlayKarte = new System.Windows.Forms.TabPage();
-      this.KarteTextbox = new System.Windows.Forms.TextBox();
+      this.searchbuttonKarte = new System.Windows.Forms.Button();
+      this.label7 = new System.Windows.Forms.Label();
+      this.vonComboBoxKarte = new System.Windows.Forms.ComboBox();
       this.label3 = new System.Windows.Forms.Label();
       this.textBox3 = new System.Windows.Forms.TextBox();
+      this.KarteTextbox = new System.Windows.Forms.TextBox();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+      this.textBox1 = new System.Windows.Forms.TextBox();
       this.tabControl1.SuspendLayout();
       this.OverlayVerbindungen.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVerbindungen)).BeginInit();
@@ -304,29 +307,13 @@
       // 
       this.dataGridViewArbeitstafel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridViewArbeitstafel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn5});
       this.dataGridViewArbeitstafel.Location = new System.Drawing.Point(26, 155);
       this.dataGridViewArbeitstafel.Name = "dataGridViewArbeitstafel";
       this.dataGridViewArbeitstafel.Size = new System.Drawing.Size(718, 261);
       this.dataGridViewArbeitstafel.TabIndex = 17;
-      // 
-      // dataGridViewTextBoxColumn1
-      // 
-      this.dataGridViewTextBoxColumn1.HeaderText = "Von";
-      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-      this.dataGridViewTextBoxColumn1.ReadOnly = true;
-      this.dataGridViewTextBoxColumn1.Width = 170;
-      // 
-      // dataGridViewTextBoxColumn2
-      // 
-      this.dataGridViewTextBoxColumn2.HeaderText = "Nach";
-      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-      this.dataGridViewTextBoxColumn2.ReadOnly = true;
-      this.dataGridViewTextBoxColumn2.Width = 170;
       // 
       // dataGridViewTextBoxColumn3
       // 
@@ -335,16 +322,16 @@
       this.dataGridViewTextBoxColumn3.ReadOnly = true;
       this.dataGridViewTextBoxColumn3.Width = 170;
       // 
-      // dataGridViewTextBoxColumn4
+      // dataGridViewTextBoxColumn2
       // 
-      this.dataGridViewTextBoxColumn4.HeaderText = "Ankunftszeit";
-      this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-      this.dataGridViewTextBoxColumn4.ReadOnly = true;
-      this.dataGridViewTextBoxColumn4.Width = 170;
+      this.dataGridViewTextBoxColumn2.HeaderText = "Nach";
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      this.dataGridViewTextBoxColumn2.ReadOnly = true;
+      this.dataGridViewTextBoxColumn2.Width = 170;
       // 
       // dataGridViewTextBoxColumn5
       // 
-      this.dataGridViewTextBoxColumn5.HeaderText = "Dauer";
+      this.dataGridViewTextBoxColumn5.HeaderText = "Bus/Zug Nr.";
       this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
       this.dataGridViewTextBoxColumn5.ReadOnly = true;
       this.dataGridViewTextBoxColumn5.Width = 150;
@@ -410,7 +397,10 @@
       // OverlayKarte
       // 
       this.OverlayKarte.BackColor = System.Drawing.Color.Silver;
-      this.OverlayKarte.Controls.Add(this.KarteTextbox);
+      this.OverlayKarte.Controls.Add(this.textBox1);
+      this.OverlayKarte.Controls.Add(this.searchbuttonKarte);
+      this.OverlayKarte.Controls.Add(this.label7);
+      this.OverlayKarte.Controls.Add(this.vonComboBoxKarte);
       this.OverlayKarte.Controls.Add(this.label3);
       this.OverlayKarte.Controls.Add(this.textBox3);
       this.OverlayKarte.Location = new System.Drawing.Point(4, 22);
@@ -420,14 +410,32 @@
       this.OverlayKarte.TabIndex = 0;
       this.OverlayKarte.Text = "Karte";
       // 
-      // KarteTextbox
+      // searchbuttonKarte
       // 
-      this.KarteTextbox.Font = new System.Drawing.Font("Arial Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.KarteTextbox.Location = new System.Drawing.Point(106, 30);
-      this.KarteTextbox.Name = "KarteTextbox";
-      this.KarteTextbox.Size = new System.Drawing.Size(240, 36);
-      this.KarteTextbox.TabIndex = 6;
-      this.KarteTextbox.Text = "Karte";
+      this.searchbuttonKarte.Location = new System.Drawing.Point(221, 92);
+      this.searchbuttonKarte.Name = "searchbuttonKarte";
+      this.searchbuttonKarte.Size = new System.Drawing.Size(100, 38);
+      this.searchbuttonKarte.TabIndex = 17;
+      this.searchbuttonKarte.Text = "Search";
+      this.searchbuttonKarte.UseVisualStyleBackColor = true;
+      this.searchbuttonKarte.Click += new System.EventHandler(this.searchbuttonKarte_click);
+      // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Location = new System.Drawing.Point(21, 105);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(29, 13);
+      this.label7.TabIndex = 16;
+      this.label7.Text = "Von:";
+      // 
+      // vonComboBoxKarte
+      // 
+      this.vonComboBoxKarte.FormattingEnabled = true;
+      this.vonComboBoxKarte.Location = new System.Drawing.Point(53, 102);
+      this.vonComboBoxKarte.Name = "vonComboBoxKarte";
+      this.vonComboBoxKarte.Size = new System.Drawing.Size(132, 21);
+      this.vonComboBoxKarte.TabIndex = 15;
       // 
       // label3
       // 
@@ -450,6 +458,24 @@
       this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
       this.textBox3.Size = new System.Drawing.Size(776, 67);
       this.textBox3.TabIndex = 4;
+      // 
+      // KarteTextbox
+      // 
+      this.KarteTextbox.Font = new System.Drawing.Font("Arial Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.KarteTextbox.Location = new System.Drawing.Point(106, 30);
+      this.KarteTextbox.Name = "KarteTextbox";
+      this.KarteTextbox.Size = new System.Drawing.Size(240, 36);
+      this.KarteTextbox.TabIndex = 6;
+      this.KarteTextbox.Text = "Karte";
+      // 
+      // textBox1
+      // 
+      this.textBox1.Font = new System.Drawing.Font("Arial Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBox1.Location = new System.Drawing.Point(106, 34);
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Size = new System.Drawing.Size(240, 36);
+      this.textBox1.TabIndex = 18;
+      this.textBox1.Text = "Karte";
       // 
       // Form1
       // 
@@ -502,17 +528,20 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn AnkunftszeitClolumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn DauerColumn;
     private System.Windows.Forms.DataGridView dataGridViewArbeitstafel;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     private System.Windows.Forms.Button SearchButtonArbeitstafel;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.ComboBox VonComboBoxArbeitstafel;
     private System.Windows.Forms.DateTimePicker dateTimePickerZeit;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+    private System.Windows.Forms.Button searchbuttonKarte;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.ComboBox vonComboBoxKarte;
+    private System.ComponentModel.BackgroundWorker backgroundWorker2;
+    private System.Windows.Forms.TextBox textBox1;
   }
 }
 

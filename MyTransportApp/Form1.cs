@@ -58,7 +58,7 @@ namespace MyTransportApp
         foreach (var connection in connections.Entries)
 
         {
-          dataGridViewArbeitstafel.Rows.Add(connection.Stop.Departure);
+          dataGridViewArbeitstafel.Rows.Add(connection.Stop.Departure, connection.To, connection.Number);
         }
       }
       else
@@ -67,5 +67,14 @@ namespace MyTransportApp
       }
 
     }
+
+    private void searchbuttonKarte_click(object sender, EventArgs e)
+    {
+
+    }
+
+    public void Autocomplete();
+
+
   }
-}
+ }
