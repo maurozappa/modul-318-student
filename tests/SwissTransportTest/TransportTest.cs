@@ -1,8 +1,9 @@
 ﻿namespace SwissTransport
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+ 
     using SwissTransport.Core;
+  using System;
 
     /// <summary>
     /// The Swiss Transport API tests.
@@ -25,7 +26,8 @@
         public void StationBoard()
         {
             testee = new Transport();
-            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
+      DateTime time = DateTime.Now;
+      var stationBoard = this.testee.GetStationBoard("Sursee", "0", time,1) ;
 
             Assert.IsNotNull(stationBoard);
         }
@@ -34,9 +36,12 @@
         public void Connections()
         {
             testee = new Transport();
-            var connections = this.testee.GetConnections("Sursee", "Luzern");
+      DateTime date = DateTime.Now;
+      DateTime time = DateTime.Now;
 
-            Assert.IsNotNull(connections);
+      var connections = this.testee.GetConnections("Sursee", "Luzern", 1, date, time);
+
+      Assert.IsNotNull(connections);
         }
     }
 }
