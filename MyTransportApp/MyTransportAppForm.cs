@@ -13,12 +13,12 @@ using SwissTransport.Models;
 namespace MyTransportApp
 {
 
-  public partial class Form1 : Form
+  public partial class MyTransportAppForm : Form
   {
 
     ITransport transport = new Transport();
     Station stationen = new Station();
-    public Form1()
+    public MyTransportAppForm()
     {
       InitializeComponent();
     }
@@ -67,14 +67,45 @@ namespace MyTransportApp
       }
 
     }
-
+    
     private void searchbuttonKarte_click(object sender, EventArgs e)
     {
 
     }
 
-    public void Autocomplete();
+    private void VonComboBox_KeyUp(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Escape)
+      {
+        var Voncombobox = (ComboBox)sender;
+        Wörtervollständigung.AddSuggestions(Voncombobox);
+      }
+    }
 
+    private void NachComboBox_KeyUp(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Escape)
+      {
+        var Voncombobox = (ComboBox)sender;
+        Wörtervollständigung.AddSuggestions(Voncombobox);
+      }
+    }
 
+    private void VonComboBoxArbeitstafel_KeyUp(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode != Keys.Down && e.KeyCode != Keys.Up && e.KeyCode != Keys.Enter && e.KeyCode != Keys.Escape)
+      {
+        var Voncombobox = (ComboBox)sender;
+        Wörtervollständigung.AddSuggestions(Voncombobox);
+      }
+    }
+
+    private void Switchbutton_Click(object sender, EventArgs e)
+    {
+      string textvonbox = VonComboBox.Text;
+      VonComboBox.Text = NachComboBox.Text;
+      NachComboBox.Text = textvonbox;
+    }
   }
  }
+

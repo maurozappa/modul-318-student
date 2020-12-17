@@ -1,6 +1,6 @@
 ﻿namespace MyTransportApp
 {
-  partial class Form1
+  partial class MyTransportAppForm
   {
     /// <summary>
     /// Erforderliche Designervariable.
@@ -61,6 +61,7 @@
       this.label2 = new System.Windows.Forms.Label();
       this.textBox2 = new System.Windows.Forms.TextBox();
       this.OverlayKarte = new System.Windows.Forms.TabPage();
+      this.textBox1 = new System.Windows.Forms.TextBox();
       this.searchbuttonKarte = new System.Windows.Forms.Button();
       this.label7 = new System.Windows.Forms.Label();
       this.vonComboBoxKarte = new System.Windows.Forms.ComboBox();
@@ -69,7 +70,8 @@
       this.KarteTextbox = new System.Windows.Forms.TextBox();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
+      this.Switchbutton = new System.Windows.Forms.Button();
       this.tabControl1.SuspendLayout();
       this.OverlayVerbindungen.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVerbindungen)).BeginInit();
@@ -80,11 +82,16 @@
       // 
       // tabControl1
       // 
+      this.tabControl1.AllowDrop = true;
+      this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.tabControl1.Controls.Add(this.OverlayVerbindungen);
       this.tabControl1.Controls.Add(this.OverlayArbeitstafel);
       this.tabControl1.Controls.Add(this.OverlayKarte);
       this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
       this.tabControl1.Location = new System.Drawing.Point(0, 0);
+      this.tabControl1.Multiline = true;
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
       this.tabControl1.Size = new System.Drawing.Size(799, 448);
@@ -93,6 +100,7 @@
       // OverlayVerbindungen
       // 
       this.OverlayVerbindungen.BackColor = System.Drawing.Color.Silver;
+      this.OverlayVerbindungen.Controls.Add(this.Switchbutton);
       this.OverlayVerbindungen.Controls.Add(this.label6);
       this.OverlayVerbindungen.Controls.Add(this.label5);
       this.OverlayVerbindungen.Controls.Add(this.dateTimePickerZeit);
@@ -126,7 +134,7 @@
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(225, 146);
+      this.label5.Location = new System.Drawing.Point(225, 149);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(28, 13);
       this.label5.TabIndex = 17;
@@ -137,15 +145,17 @@
       this.dateTimePickerZeit.Checked = false;
       this.dateTimePickerZeit.CustomFormat = "HH:mm";
       this.dateTimePickerZeit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-      this.dateTimePickerZeit.Location = new System.Drawing.Point(259, 143);
+      this.dateTimePickerZeit.Location = new System.Drawing.Point(259, 147);
       this.dateTimePickerZeit.Name = "dateTimePickerZeit";
       this.dateTimePickerZeit.ShowUpDown = true;
       this.dateTimePickerZeit.Size = new System.Drawing.Size(200, 20);
-      this.dateTimePickerZeit.TabIndex = 16;
+      this.dateTimePickerZeit.TabIndex = 4;
       this.dateTimePickerZeit.Value = new System.DateTime(2020, 12, 16, 12, 31, 0, 0);
       // 
       // dataGridViewVerbindungen
       // 
+      this.dataGridViewVerbindungen.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+      this.dataGridViewVerbindungen.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
       this.dataGridViewVerbindungen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridViewVerbindungen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.VonColumn,
@@ -155,6 +165,7 @@
             this.DauerColumn});
       this.dataGridViewVerbindungen.Location = new System.Drawing.Point(23, 202);
       this.dataGridViewVerbindungen.Name = "dataGridViewVerbindungen";
+      this.dataGridViewVerbindungen.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
       this.dataGridViewVerbindungen.Size = new System.Drawing.Size(718, 204);
       this.dataGridViewVerbindungen.TabIndex = 15;
       this.dataGridViewVerbindungen.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVerbindungen_CellContentClick);
@@ -197,10 +208,11 @@
       // NachComboBox
       // 
       this.NachComboBox.FormattingEnabled = true;
-      this.NachComboBox.Location = new System.Drawing.Point(55, 143);
+      this.NachComboBox.Location = new System.Drawing.Point(55, 146);
       this.NachComboBox.Name = "NachComboBox";
       this.NachComboBox.Size = new System.Drawing.Size(132, 21);
-      this.NachComboBox.TabIndex = 14;
+      this.NachComboBox.TabIndex = 2;
+      this.NachComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.NachComboBox_KeyUp);
       // 
       // VonComboBox
       // 
@@ -208,14 +220,15 @@
       this.VonComboBox.Location = new System.Drawing.Point(55, 91);
       this.VonComboBox.Name = "VonComboBox";
       this.VonComboBox.Size = new System.Drawing.Size(132, 21);
-      this.VonComboBox.TabIndex = 13;
+      this.VonComboBox.TabIndex = 1;
+      this.VonComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.VonComboBox_KeyUp);
       // 
       // SearchButton
       // 
       this.SearchButton.Location = new System.Drawing.Point(641, 146);
       this.SearchButton.Name = "SearchButton";
       this.SearchButton.Size = new System.Drawing.Size(100, 38);
-      this.SearchButton.TabIndex = 11;
+      this.SearchButton.TabIndex = 5;
       this.SearchButton.Text = "Search";
       this.SearchButton.UseVisualStyleBackColor = true;
       this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
@@ -225,7 +238,7 @@
       this.dateTimePickerDatum.Location = new System.Drawing.Point(267, 92);
       this.dateTimePickerDatum.Name = "dateTimePickerDatum";
       this.dateTimePickerDatum.Size = new System.Drawing.Size(200, 20);
-      this.dateTimePickerDatum.TabIndex = 10;
+      this.dateTimePickerDatum.TabIndex = 3;
       this.dateTimePickerDatum.Value = new System.DateTime(2020, 12, 16, 0, 0, 0, 0);
       // 
       // VerbindungenLabel
@@ -240,7 +253,7 @@
       // NachLabel
       // 
       this.NachLabel.AutoSize = true;
-      this.NachLabel.Location = new System.Drawing.Point(20, 146);
+      this.NachLabel.Location = new System.Drawing.Point(20, 150);
       this.NachLabel.Name = "NachLabel";
       this.NachLabel.Size = new System.Drawing.Size(36, 13);
       this.NachLabel.TabIndex = 7;
@@ -261,7 +274,7 @@
       this.TextBoxVerbindungen.Location = new System.Drawing.Point(105, 27);
       this.TextBoxVerbindungen.Name = "TextBoxVerbindungen";
       this.TextBoxVerbindungen.Size = new System.Drawing.Size(240, 36);
-      this.TextBoxVerbindungen.TabIndex = 4;
+      this.TextBoxVerbindungen.TabIndex = 21;
       this.TextBoxVerbindungen.Text = "Verbindungen suchen";
       // 
       // label1
@@ -273,7 +286,7 @@
       this.label1.Location = new System.Drawing.Point(16, 23);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(83, 42);
-      this.label1.TabIndex = 3;
+      this.label1.TabIndex = 11;
       this.label1.Text = "MTA";
       // 
       // TextBox
@@ -284,7 +297,7 @@
       this.TextBox.Name = "TextBox";
       this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
       this.TextBox.Size = new System.Drawing.Size(776, 67);
-      this.TextBox.TabIndex = 2;
+      this.TextBox.TabIndex = 22;
       // 
       // OverlayArbeitstafel
       // 
@@ -341,7 +354,7 @@
       this.SearchButtonArbeitstafel.Location = new System.Drawing.Point(286, 102);
       this.SearchButtonArbeitstafel.Name = "SearchButtonArbeitstafel";
       this.SearchButtonArbeitstafel.Size = new System.Drawing.Size(100, 38);
-      this.SearchButtonArbeitstafel.TabIndex = 16;
+      this.SearchButtonArbeitstafel.TabIndex = 7;
       this.SearchButtonArbeitstafel.Text = "Search";
       this.SearchButtonArbeitstafel.UseVisualStyleBackColor = true;
       this.SearchButtonArbeitstafel.Click += new System.EventHandler(this.SearchButtonArbeitstafel_Click);
@@ -361,7 +374,8 @@
       this.VonComboBoxArbeitstafel.Location = new System.Drawing.Point(58, 115);
       this.VonComboBoxArbeitstafel.Name = "VonComboBoxArbeitstafel";
       this.VonComboBoxArbeitstafel.Size = new System.Drawing.Size(132, 21);
-      this.VonComboBoxArbeitstafel.TabIndex = 14;
+      this.VonComboBoxArbeitstafel.TabIndex = 6;
+      this.VonComboBoxArbeitstafel.KeyUp += new System.Windows.Forms.KeyEventHandler(this.VonComboBoxArbeitstafel_KeyUp);
       // 
       // ArbeitstafelTextBox
       // 
@@ -369,7 +383,7 @@
       this.ArbeitstafelTextBox.Location = new System.Drawing.Point(108, 35);
       this.ArbeitstafelTextBox.Name = "ArbeitstafelTextBox";
       this.ArbeitstafelTextBox.Size = new System.Drawing.Size(240, 36);
-      this.ArbeitstafelTextBox.TabIndex = 5;
+      this.ArbeitstafelTextBox.TabIndex = 13;
       this.ArbeitstafelTextBox.Text = "Arbeitstafel";
       // 
       // label2
@@ -381,7 +395,7 @@
       this.label2.Location = new System.Drawing.Point(19, 31);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(83, 42);
-      this.label2.TabIndex = 4;
+      this.label2.TabIndex = 12;
       this.label2.Text = "MTA";
       // 
       // textBox2
@@ -392,7 +406,7 @@
       this.textBox2.Name = "textBox2";
       this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
       this.textBox2.Size = new System.Drawing.Size(776, 67);
-      this.textBox2.TabIndex = 3;
+      this.textBox2.TabIndex = 16;
       // 
       // OverlayKarte
       // 
@@ -410,12 +424,21 @@
       this.OverlayKarte.TabIndex = 0;
       this.OverlayKarte.Text = "Karte";
       // 
+      // textBox1
+      // 
+      this.textBox1.Font = new System.Drawing.Font("Arial Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBox1.Location = new System.Drawing.Point(106, 34);
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Size = new System.Drawing.Size(240, 36);
+      this.textBox1.TabIndex = 43;
+      this.textBox1.Text = "Karte";
+      // 
       // searchbuttonKarte
       // 
       this.searchbuttonKarte.Location = new System.Drawing.Point(221, 92);
       this.searchbuttonKarte.Name = "searchbuttonKarte";
       this.searchbuttonKarte.Size = new System.Drawing.Size(100, 38);
-      this.searchbuttonKarte.TabIndex = 17;
+      this.searchbuttonKarte.TabIndex = 9;
       this.searchbuttonKarte.Text = "Search";
       this.searchbuttonKarte.UseVisualStyleBackColor = true;
       this.searchbuttonKarte.Click += new System.EventHandler(this.searchbuttonKarte_click);
@@ -435,7 +458,7 @@
       this.vonComboBoxKarte.Location = new System.Drawing.Point(53, 102);
       this.vonComboBoxKarte.Name = "vonComboBoxKarte";
       this.vonComboBoxKarte.Size = new System.Drawing.Size(132, 21);
-      this.vonComboBoxKarte.TabIndex = 15;
+      this.vonComboBoxKarte.TabIndex = 8;
       // 
       // label3
       // 
@@ -446,7 +469,7 @@
       this.label3.Location = new System.Drawing.Point(17, 30);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(83, 42);
-      this.label3.TabIndex = 5;
+      this.label3.TabIndex = 33;
       this.label3.Text = "MTA";
       // 
       // textBox3
@@ -457,7 +480,7 @@
       this.textBox3.Name = "textBox3";
       this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
       this.textBox3.Size = new System.Drawing.Size(776, 67);
-      this.textBox3.TabIndex = 4;
+      this.textBox3.TabIndex = 65;
       // 
       // KarteTextbox
       // 
@@ -468,22 +491,25 @@
       this.KarteTextbox.TabIndex = 6;
       this.KarteTextbox.Text = "Karte";
       // 
-      // textBox1
+      // Switchbutton
       // 
-      this.textBox1.Font = new System.Drawing.Font("Arial Black", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBox1.Location = new System.Drawing.Point(106, 34);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(240, 36);
-      this.textBox1.TabIndex = 18;
-      this.textBox1.Text = "Karte";
+      this.Switchbutton.Location = new System.Drawing.Point(94, 118);
+      this.Switchbutton.Name = "Switchbutton";
+      this.Switchbutton.Size = new System.Drawing.Size(49, 23);
+      this.Switchbutton.TabIndex = 23;
+      this.Switchbutton.Text = "switch";
+      this.Switchbutton.UseVisualStyleBackColor = true;
+      this.Switchbutton.Click += new System.EventHandler(this.Switchbutton_Click);
       // 
-      // Form1
+      // MyTransportAppForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
+      this.ClientSize = new System.Drawing.Size(779, 434);
       this.Controls.Add(this.tabControl1);
-      this.Name = "Form1";
+      this.MaximumSize = new System.Drawing.Size(795, 473);
+      this.MinimumSize = new System.Drawing.Size(795, 473);
+      this.Name = "MyTransportAppForm";
       this.Text = "MyTransportApp";
       this.tabControl1.ResumeLayout(false);
       this.OverlayVerbindungen.ResumeLayout(false);
@@ -542,6 +568,8 @@
     private System.Windows.Forms.ComboBox vonComboBoxKarte;
     private System.ComponentModel.BackgroundWorker backgroundWorker2;
     private System.Windows.Forms.TextBox textBox1;
+    private System.ComponentModel.BackgroundWorker backgroundWorker3;
+    private System.Windows.Forms.Button Switchbutton;
   }
 }
 
